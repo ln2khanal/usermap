@@ -1,0 +1,35 @@
+{% extends 'route/base.html' %}
+{% block title %} User Route{% endblock %}
+{% block customstaticstop %}
+    <script async defer src="https://maps.googleapis.com/maps/api/js"></script>
+{% endblock %}
+{% block body %}
+    <h2>Filters</h2>
+    <div class="col-xs-6 col-md-3 container-fluid">
+        <label for="from">From</label>
+        <select name="from">
+            {% for from in from_filter %}
+                <option value="{{ from }}"> {{ from }}</option>
+            {% endfor %}
+        </select>
+        <br/>
+        <br/>
+        <label for="to">To</label>
+        {% if to_filter %}
+        <select name="to">
+            {% for to in to_filter %}
+                <option value="{{ to }}"> {{ to }}</option>
+            {% endfor %}
+        </select>
+            {% endif %}
+    </div>
+    <div class="col-xs-6 col-md-9 container-fluid">
+    <a href="#"><img src="https://scontent-sin1-1.xx.fbcdn.net/v/t1.0-9/13507156_1403132933035521_3720971992746087102_n.jpg?oh=e39c3d58048d966d8bf85d8f4462679b&oe=580430FD""></a>
+    <div id="map">
+{#        load map hsere #}
+    </div>
+    </div>
+
+{% endblock %}
+{% block customstaticsbottom %}
+{% endblock %}

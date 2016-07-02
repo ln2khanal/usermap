@@ -1,0 +1,30 @@
+{% extends 'route/base.html' %}
+{% block body %}
+    {% if users %}
+      <h4>User Details</h4>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>S.N.</th>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+          <tr class="">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ user.user_route.route_id }}</td>
+            <td>{{ user.first_name}}</td>
+            <td>{{ user.last_name }}</td>
+            <td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+        <p>No user data found</p>
+    {% endif %}
+
+{% endblock %}
