@@ -1,6 +1,13 @@
- body{
-     background: #EEEEEE;
- }
+html, body {
+        background: #EEEEEE;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 80%;
+      }
+
  .navbar{
      border-radius: 0;
  }
