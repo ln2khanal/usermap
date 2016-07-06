@@ -34,7 +34,7 @@ html, body {
     top:10%;
     left:10%;
     border-radius: 10px;
-    background:rgba(0,0,0,0.75);
+    opacity: 1;
 }
 
 /* popup inner */
