@@ -1,10 +1,13 @@
+
 $(function() {
     $("#from_filter").change(function() {
-        
-        document.getElementById('to_filter').innerHTML = '' +
-            '<select name="to_filter" id="to_filter">' +
-                '<option value="PKR"> Pokhara </option>' +
-                '<option value="BHW"> Bhairahawa </option>' +
-            '</select>';
+        var val = $('option:selected', this).val();
+        $.get( "/route/getdestination/",'from_filter='+ val, function(data) {
+            var to_filter = data.to_filter;
+            if (to_filter != null){
+                $("#to_filter").replaceWith('<select id="to_filter"></select>');
+                $('#to_filter').append("<option value=" + to_filter + ">" + to_filter + "</option>");
+            }
+        });
     });
 });
