@@ -1,20 +1,24 @@
 {% extends 'route/base.html' %}
 {% block title %} User Route{% endblock %}
 {% block body %}
-    <h2>Filters</h2>
-    <div class="col-xs-6 col-md-1 container-fluid">
+    <h4>Filters</h4>
+    <div class="col-xs-6 col-md-2 container-fluid">
         <label for="from_filter">From</label>
         <select name="from_filter" id="from_filter">
+        <option>Select Source</option>
             {% for from in from_filter %}
-                <option value="{{ from.route_id }}"> {{ from.field_type }}</option>
+                <option value="{{ from}}"> {{ from}}</option>
             {% endfor %}
         </select>
         <br/>
         <br/>
         <label for="to_filter">To</label>
         <div id="to_filter"><i>Nothing selected</i></div>
+        <br/>
+        <br/>
+        <button type="button" class="btn btn-success" onclick="locus();">Submit</button>
     </div>
-    <div class="col-xs-6 col-md-11 container-fluid">
+    <div class="col-xs-6 col-md-10 container-fluid">
         <div id="map">
             <center>Ready to load map...</center>
         </div>
@@ -24,9 +28,6 @@
 {% block customstaticsbottom %}
     {% load staticfiles %}
     <script type="text/javascript" src="{% static 'route/js/maploader.js' %}"></script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBqYNZf6hedRuOjU_uy3TegTH9ucyhurQ">
-    </script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDBqYNZf6hedRuOjU_uy3TegTH9ucyhurQ&sensor=false"></script>
     <script type="text/javascript" src="{% static 'route/js/maptrigger.js' %}"></script>
 {% endblock %}
-{#src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBqYNZf6hedRuOjU_uy3TegTH9ucyhurQ&callback=initMap">#}
