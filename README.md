@@ -1,2 +1,2 @@
 # usermap
-A simple django application that navigates google map with longitude longitude.
+A simple django application, can read .xslx file having longitude longitude and it renders them in google map.
