@@ -1,31 +1,58 @@
 {% extends 'route/base.html' %}
 {% block title %} User Route{% endblock %}
+{% block customstaticstop %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'route/css/jquery-ui.css' %}">
+    <script type="text/javascript" src="{% static 'route/js/jquery-ui.js'%}"></script>
+{% endblock %}
 {% block body %}
-    <h4>Filters</h4>
+    <h4>Filters(Optional)</h4>
     <div class="col-xs-6 col-md-2 container-fluid">
-        <label for="from_filter">From</label>
-        <select name="from_filter" id="from_filter">
-        <option>Select Source</option>
-            {% for from in from_filter %}
-                <option value="{{ from}}"> {{ from}}</option>
-            {% endfor %}
-        </select>
-        <br/>
-        <br/>
-        <label for="to_filter">To</label>
-        <div id="to_filter"><i>Nothing selected</i></div>
-        <br/>
-        <br/>
-        <button type="button" class="btn btn-success" onclick="locus();">Submit</button>
+        <form action="#">
+{#            date range#}
+            <label for="from_date">Start Date</label>
+            <input type="text" id="from_date" class="form-control">
+            <label for="to_date">End Date</label>
+            <input type="text" id="to_date" class="form-control">
+            <hr>
+{#            age range#}
+            <label for="start_age">Age From</label>
+            <input type="number" id="start_age" name="start_age" class="form-control">
+            <label for="end_age">Age To</label>
+            <input type="number" id="end_age" name="end_age" class="form-control">
+            <hr>
+{#            source & destination#}
+            <label for="from_filter">Source</label>
+            <select class="form-control" name="from_filter" id="from_filter">
+            <option>Select Source</option>
+                {% for from in from_filter %}
+                    <option value="{{ from }}"> {{ from }}</option>
+                {% endfor %}
+            </select>
+            <label for="to_filter">Destination</label>
+            <div id="to_filter">
+                <select class="form-control" name="to_filter" id="to_filter">
+                    <option>Select Destination</option>
+                </select>
+            </div>
+            <br/>
+            <button class="btn btn-info" type="reset"><span class="glyphicon glyphicon-refresh"></span>&nbsp;Reset</button>
+            <button type="button" class="btn btn-success" onclick="locus();">Submit</button>
+        </form>
+    <a class="btn btn-success" href="javascript:void(0);" onclick="generate();">Generate</a>
     </div>
     <div class="col-xs-6 col-md-10 container-fluid">
         <div id="map">
-            <center>Ready to load map...</center>
+            <p>Ready to load map...</p>
         </div>
     </div>
 
 {% endblock %}
 {% block customstaticsbottom %}
+    <script type="application/javascript">
+        $("#from_date").datepicker();
+        $("#to_date").datepicker();
+    </script>
     {% load staticfiles %}
     <script type="text/javascript" src="{% static 'route/js/maploader.js' %}"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
