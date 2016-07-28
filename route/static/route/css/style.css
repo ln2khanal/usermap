@@ -5,20 +5,10 @@ html, body {
         padding: 0;
       }
       #map {
-        height: 70%;
+          height: 80%;
       }
-      #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
+      #map p{
+          text-align: center;
       }
 
  .navbar{
@@ -44,7 +34,7 @@ html, body {
     height:90%;
     padding:40px;
     margin-bottom: 50px;
-    position:absolute;
+    position:fixed;
     top:50%;
     left:50%;
     -webkit-transform:translate(-50%, -50%);
@@ -56,20 +46,20 @@ html, body {
 
 /* close button */
 .popup-close {
-    width:30px;
-    height:30px;
+    width:20px;
+    height:20px;
     padding-top:4px;
     display:inline-block;
     position:absolute;
     top:0px;
     right:0px;
-    transition:ease 0.25s all;
+    transition:ease 0.10s all;
     -webkit-transform:translate(50%, -50%);
     transform:translate(50%, -50%);
     border-radius:1000px;
     background:rgba(0,0,0,0.8);
-    font-family:Arial, Sans-Serif;
-    font-size:20px;
+    font-family:'Arial', serif;
+    font-size:12px;
     text-align:center;
     line-height:100%;
     color:#fff;
@@ -79,4 +69,24 @@ html, body {
     height: 90%;
     width: 100%;
     margin-bottom: 30px;
+}
+
+.table-scroll {
+    height: 70%;
+    overflow: scroll;
+    border-collapse:collapse;
+    background: white;
+    border-radius: 10px;
+}
+
+.table{
+    font-size: inherit;
+}
+.table tr:hover{
+    cursor: pointer;
+}
+
+.container{
+    width: 95%;
+    font-family: 'Cormorant Upright', serif;
 }
