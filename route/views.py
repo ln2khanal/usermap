@@ -1,18 +1,21 @@
-
-from models import User, Route
-from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render, redirect
-
+from django.http import JsonResponse
+from libroute import file_handler
+from models import User, Route
 import logging
 
 
-def index(request):
+def index(request, *args, **kwargs):
     """
     :returns a list of users for listing.
     """
+    print kwargs
     users = User.objects.all()
-
-    return render(request, "route/index.html", context={'users': users})
+    context = {'users': users}
+    context.update(kwargs)
+    # print context
+    return render(request, "route/index.html", context=context)
 
 
 def usermap(request):
@@ -91,18 +94,32 @@ def userroute(request):
         return JsonResponse(context)
 
 
+@csrf_protect
 def adddata(request):
     """
-    inserts records to db reading from .xlsx file
+    inserts records to db reading from a .xlsx file
     """
     try:
+        tmp_file = request.FILES.get('xlsxfile')
+        file_path = file_handler.handle_uploaded_file(tmp_file)
+        valid_file = file_handler.validate_file(file_path)
+        if not valid_file:
+            raise ValueError('Invalid File')
+
         from openpyxl import load_workbook
-        wb = load_workbook(filename='path_to_data.xlsx', read_only=True)
+        wb = load_workbook(filename=file_path, read_only=True)
+    except Exception as e:
+        message = "Error on loading file, %s" % str(e)
+        logging.error(message)
+        return redirect('/route/', {'message': message})
+
+    try:
         assert 'Sheet1' in wb
         assert 'Sheet2' in wb
     except Exception as e:
-        logging.warn('library "openpyxl" should be installed & the sheet must have Sheet1 & Sheet2', e)
-        return redirect('/route/')
+        message = 'Invalid data structure, %s' % str(e)
+        logging.error(message)
+        return redirect('/route/', {'message': message})
 
     s1 = wb['Sheet1']
     s2 = wb['Sheet2']
@@ -147,5 +164,5 @@ def adddata(request):
             user = None
         r.user = user
         r.save()
-
-    return redirect('/route/')
+    context = {'message': 'New records have been added'}
+    return redirect('/route/', **context)
