@@ -1,8 +1,8 @@
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from libroute import file_handler
-from models import User, Route
+from .libroute import file_handler
+from .models import User, Route
 import logging
 
 
@@ -10,7 +10,7 @@ def index(request, *args, **kwargs):
     """
     :returns a list of users for listing.
     """
-    print kwargs
+    print (kwargs)
     users = User.objects.all()
     context = {'users': users}
     context.update(kwargs)

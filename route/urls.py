@@ -1,4 +1,4 @@
-"""sujentask URL Configuration
+"""gmap URL Configuration
 """
 from django.conf.urls import url
 from . import views

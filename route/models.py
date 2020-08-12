@@ -23,7 +23,7 @@ class Route(models.Model):
     User's Route details
     """
     route_key = models.CharField(max_length=100)
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     field_type = models.CharField(max_length=100)
     latitude = models.FloatField()
     longitude = models.FloatField()

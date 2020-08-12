@@ -42,7 +42,7 @@
     <div class="modal-dialog">
 
       <!-- Modal content-->
-        <form action="{% url "route:adddata" %}" method="post" enctype="multipart/form-data">
+        <form action='{% url "route:adddata" %}" method="post" enctype="multipart/form-data'>
             {% csrf_token %}
             <div class="modal-content">
                 <div class="modal-header">
@@ -69,10 +69,8 @@
     </div>
   </div>
     {% block customstaticsbottom %}
-        {% load staticfiles %}
+        {% load static %}
             <script type="text/javascript" src="{% static 'route/js/singleroute.js' %}"></script>
             <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        {% endblock %}
-
-
+    {% endblock %}
 {% endblock %}
