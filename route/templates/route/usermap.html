@@ -1,7 +1,7 @@
 {% extends 'route/base.html' %}
 {% block title %} User Route{% endblock %}
 {% block customstaticstop %}
-    {% load staticfiles %}
+    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'route/css/jquery-ui.css' %}">
     <script type="text/javascript" src="{% static 'route/js/jquery-ui.js'%}"></script>
 {% endblock %}
@@ -53,7 +53,7 @@
         $("#from_date").datepicker();
         $("#to_date").datepicker();
     </script>
-    {% load staticfiles %}
+    {% load static %}
     <script type="text/javascript" src="{% static 'route/js/maploader.js' %}"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="{% static 'route/js/maptrigger.js' %}"></script>
